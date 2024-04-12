@@ -1,47 +1,80 @@
 const digitBtns = document.querySelectorAll(".digit");
+const decimalBtn = document.querySelector(".decimal");
 const opBtns = document.querySelectorAll(".operator");
-const equals = document.querySelector(".equals");
+const equalsBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
 let display = document.querySelector("#display");
-let a = 0;
+let a;
 let operator;
 let b;
 
-function enterDigit() {
-    display.textContent += this.textContent;
+function enterDigit() {  
+    if (typeof a !== 'undefined' && typeof operator === 'undefined') {
+            a = undefined;
+        }
+        if (typeof b === 'undefined') {
+            display.textContent = this.textContent;
+        } else if (display.textContent == '0' && this.textContent == '0') {
+            console.log(this.textContent); 
+        } else {
+            display.textContent += this.textContent;
+            console.log(this.textContent);
+        }
+        b = Number(display.textContent);
 }
 
-digitBtns.forEach((btn) => btn.addEventListener("click", enterDigit));
-
-function clickOperator() {
-    if (a === 0) {
-        a = Number(display.textContent);
-        display.textContent = "";
-        operator = this.textContent;
+function shouldAddDecimal() {
+    if (typeof b === 'undefined' && typeof operator === 'undefined') {
+        return true
+    } else if (display.textContent.slice(-1) != '.' && b - Math.floor(b) == 0) {
+        return true
     } else {
-        b = Number(display.textContent);
-        display.textContent = operate(a, operator, b);
+        return false;
     }
 }
 
-opBtns.forEach((btn) => btn.addEventListener("click", clickOperator));
+function addDecimal() {
+    if (typeof b === 'undefined') {
+        display.textContent = '0.'
+    } else {
+        display.textContent += '.';
+    }
+    b = Number(display.textContent);
+}
 
-equals.addEventListener("click", calculate)
+function clickOperator() {
+    if (typeof b === 'undefined') {
+        operator = this.textContent;
+    } else if (typeof a === 'undefined') {
+        a = b;
+        b = undefined;
+        operator = this.textContent;
+    } else {
+        a = operate(a, operator, b);
+        display.textContent = a;
+        b = undefined;
+        operator = this.textContent;
+    }
+}
 
 function calculate() {
     b = Number(display.textContent);
     display.textContent = operate(a, operator, b);
+    a = Number(display.textContent);
+    b = undefined;
+    operator = undefined;
 }
 
-clearBtn.addEventListener("click", clearCalc)
-
 function clearCalc() {
-    a = 0;
-    b = 0;
+    a = undefined;
+    b = undefined;
     display.textContent = "0";
 }
 
 function operate(a, operator, b){
+    if (operator == '/' && b == 0) {
+        return 'You cannot divide by zero!';
+    }
     switch(operator) {
         case '+':
             return a + b;
@@ -53,6 +86,13 @@ function operate(a, operator, b){
             return a / b;
     }
 }
+
+digitBtns.forEach((btn) => btn.addEventListener("click", enterDigit));
+decimalBtn.addEventListener("click", () => shouldAddDecimal() ? addDecimal() : false);
+opBtns.forEach((btn) => btn.addEventListener("click", clickOperator));
+equalsBtn.addEventListener("click", calculate)
+clearBtn.addEventListener("click", clearCalc)
+
 
 /*
 operate = (a, operator, b) => {

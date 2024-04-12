@@ -1,4 +1,142 @@
+/*
+
+COLOUR REFERENCE GUIDE: 
+
+#0C0032
+#190061
+#240090
+#3500D3
+#282828
+
+*/
+
+
 * {
-    color: black;
+    color: white;
+    background-color: #282828;
+    font-size: 20px;
+    font-weight: 550;
     // border: 1px red solid;
+}
+
+.btn-unselected {
+    background-color: EFEFEF;
+}
+
+.btn-selected {
+    background-color: green;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 600px;
+    width: 450px;
+    border: solid 5px black;
+}
+
+button {
+    flex-basis: 25%;
+    border: solid 3px black;
+    margin: 0px;
+}
+
+.digit, .decimal {
+    background-color: #240090;
+}
+
+.digit:hover, .decimal:hover {
+    background-color: #190061;
+}
+
+.operator {
+    background-color: #190061;
+}
+
+.operator:hover, #equals:hover, #clear:hover {
+    background-color: #240090;
+}
+
+#display {
+    order: 17;
+    flex-basis: 100%;
+    background-color: #0C0032;
+}
+
+#num-1 {
+    order: 3;
+}
+
+#num-2 {
+    order: 4;
+}
+
+#num-3 {
+    order: 5;
+}
+
+#num-4 {
+    order: 7;
+}
+
+#num-5 {
+    order: 8;
+}
+
+#num-6 {
+    order: 9;
+}
+
+#num-7 {
+    order: 11;
+}
+
+#num-8 {
+    order: 12;
+}
+
+#num-9 {
+    order: 13;
+}
+
+#num-0 {
+    order: 0;
+    flex-basis: 50%;
+}
+
+#decimal {
+    order: 1;
+}
+
+#op-add {
+    order: 6;
+}
+
+#op-subtract {
+    order: 10;
+}
+
+#op-multiply {
+    order: 14;
+}
+
+#op-divide {
+    order: 16;
+}
+
+#equals {
+    order: 2;
+    background-color: #3500D3;
+}
+
+#clear {
+    order: 15;
+    flex-grow: 2;
+    background-color: #190061;
 }
