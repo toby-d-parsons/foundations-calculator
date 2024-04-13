@@ -59,12 +59,12 @@ button {
     background-color: #190061;
 }
 
-.operator:hover, #equals:hover, #clear:hover {
+.operator:hover, #equals:hover, #clear:hover, .backspace-container:hover {
     background-color: #240090;
 }
 
 #display {
-    order: 17;
+    order: 18;
     flex-basis: 100%;
     background-color: #0C0032;
 }
@@ -127,7 +127,7 @@ button {
 }
 
 #op-divide {
-    order: 16;
+    order: 17;
 }
 
 #equals {
@@ -137,6 +137,14 @@ button {
 
 #clear {
     order: 15;
-    flex-grow: 2;
+    flex-basis: 50%;
     background-color: #190061;
+}
+
+.backspace-container {
+    order: 16;
+    background-color: #190061;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
