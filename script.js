@@ -10,7 +10,7 @@ let operator;
 let b;
 
 function shouldAddDigit() {
-    if (display.textContent.length <= 16) {
+    if (display.textContent.length <= 16 || (typeof b == 'undefined' && typeof operator !== 'undefined')) {
         return true
     }
 }
@@ -67,7 +67,6 @@ function addDecimal() {
 }
 
 function clickOperator(op) {
-    debugger;
     if (typeof a === 'undefined' && typeof b === 'undefined') {
         a = 0;
         operator = op;
@@ -123,7 +122,6 @@ function operate(a, operator, b){
 }
 
 digitBtns.forEach((btn) => btn.addEventListener("click", function() {
-    debugger;
     shouldAddDigit() ? enterDigit(btn.textContent) : false;
 }));
 decimalBtn.addEventListener("click", () => shouldAddDecimal() ? addDecimal() : false);
